@@ -146,7 +146,7 @@ Week 1 / E1
     CONTAINER ID   NAME      CPU %     MEM USAGE / LIMIT   MEM %     NET I/O   BLOCK I/O   PIDS
     ```
 
-#### [x] Dockerfile 빌드/실행
+#### [x] Dockerfile 빌드/실행 // 포트 매핑 접속
     명령어
     ```terminal
     pico Dockerfile
@@ -157,6 +157,7 @@ Week 1 / E1
     docker logs container
     # http://localhost:8080
     ```
+    (/localhost:8080.png)
     결과
     ```termial
     [+] Building 1.6s (8/8) FINISHED                                                                                                                                  docker:default
@@ -207,17 +208,22 @@ Week 1 / E1
     2026/04/03 10:48:47 [notice] 1#1: start worker process 33
     ```
 
-#### [x] 포트 매핑 접속(2회)
-    명령어
-    ```termial
-    ```
-    결과
-    ```termial
-    ```
 
 #### [x] 바인드 마운트 반영
     명령어
     ```termial
+    docker run -it -v $(pwd)/test:/app --name new-container ubuntu bash
+    #------------container---------------
+    mkdir test
+    cd test
+    vim day.txt
+    #--------------day-----------------
+    hello world
+
+    123
+    #---------------------------------
+    cat day.txt
+
     ```
     결과
     ```termial
