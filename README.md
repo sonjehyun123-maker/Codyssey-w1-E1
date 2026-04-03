@@ -213,36 +213,50 @@ Week 1 / E1
     명령어
     ```termial
     docker run -it -v $(pwd)/test:/app --name new-container ubuntu bash
-    #------------container---------------
-    mkdir test
-    cd test
-    vim day.txt
-    #--------------day-----------------
-    hello world
-
-    123
-    #---------------------------------
-    cat day.txt
-
+    #----------container-----------
+    cd /app
+    echo "hello world" > day.txt
+    #------------------------------
+    cat tast.txt
     ```
     결과
     ```termial
+    hello world
     ```
 
 #### [x] 볼륨 영속성
     명령어
     ```termial
+    docker volume create my-volume
+    docker run -it -v my-volume:/app --name vol-test ubuntu bash
+        # docker run -it -v vol-test:/app ubuntu bash
+    echo "volume data" > /app/data.txt
+    exit
+    docker rm vol-test
+    docker run -it -v my-volume:/app --name vol-test2 ubuntu bash
+    cat /app/data.txt
     ```
     결과
     ```termial
+    volume data
     ```
 
 #### [x] Git 설정 + VSCode GitHub 연동
     명령어
     ```termial
-    ```
-    결과
-    ```termial
+    git init
+    git add -A
+    git commit -m "설명"
+    git push
     ```
 
 ### 트러블슈킹(2회이상)
+    1. 실행 안 된 컨테이너 exec 시도
+    증상: container is not running
+    상황: 실행중이 아닌 컨테이너에 들어갈려고 함 
+    해결: docker start 하거나 새로 실행
+
+    2. Dockerfile 못 찾음
+    증상: no such file or directory
+    원인: 현재 경로에 Dockerfile 없음
+    해결: ls로 위치 확인 후 해당 폴더에서 build
